@@ -1,0 +1,219 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    background-color: #ffffff;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  
+  .logo {
+    width: 50px;
+  }
+  
+  .buttons {
+    display: flex;
+  }
+  
+  .extra-buttons {
+    display: flex;
+  }
+  
+  .nav-button {
+    background-color: transparent;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 8px 50px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 600;
+    position:relative;
+    display: inline-block;
+  }
+
+  .nav-button:hover{
+    color: rgb(255, 155, 155);
+  }
+
+  .Options1{
+    position: absolute;
+    top: 100%;
+    left: 8%;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+    z-index: 100;
+  }
+
+  .Options2{
+    position: absolute;
+    top: 100%;
+    left: 19%;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+    z-index: 100;
+  }
+
+  .Options3{
+    position: absolute;
+    top: 100%;
+    left: 31%;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+    z-index: 100;
+  }
+
+  .Option{
+    margin: 0;
+    padding: 5px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .Option:hover{
+    color: rgb(255, 155, 155);
+  }
+
+  .nav2 {
+    background-color: transparent;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 8px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 600;
+  }
+
+  .nav2:hover{
+    color: rgb(255, 155, 155);
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .tim-kiem {
+    padding: 8px;
+    padding-right: 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin: 0 10px;
+    width: 20vw;
+    flex: 1;
+  }
+
+  .search-icon {
+    color: #000000;
+    position: absolute;
+    top: 50%;
+    right: 20px; 
+    transform: translateY(-50%);
+  }
+  
+  .search-icon:hover{
+    color: rgb(255, 155, 155);
+    cursor: pointer;
+  }
+
+  .anh-bia {
+    padding: 0px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+  }
+
+  .dmsp {
+    padding: 10px;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .card{
+    border: 2px solid black;
+    border-radius: 0px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+    padding: 0px;
+    margin-left: 30px;
+    margin-top: 10px;
+    text-align: center;
+    max-width: 200px;
+    display: inline-block;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .card:hover{
+    cursor: pointer;
+    background-color:rgb(255, 242, 222);
+  }
+  
+  .card-image{
+    max-width: 100%;
+    height: auto;
+    border-radius: 0px;
+    margin-bottom: 0px;
+  }
+  
+  .card-title{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 10px;
+    margin-top: 10px;
+    padding-top: 0%;
+    color:rgb(0, 0, 0);
+  }
+
+  .card-title:hover{
+    color: rgb(255, 155, 155);
+  }
+
+  .footer{
+    display: flex;
+  }
+
+  .footer-left, .footer-right{
+    flex: 1;
+  }
+
+  .footer-text{
+    margin-left: 50px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .footer-text1{
+    margin-left: 50px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #245fff;
+  }
+
+  .footer-text2{
+    margin-left: 50px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(255, 106, 131);
+  }
+
+  .footer-nam{
+    text-align: center;
+  }
+
+  .footer-h1{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 50px;
+  }
+  
+  .footer-chu{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-left: 50px;
+  }
