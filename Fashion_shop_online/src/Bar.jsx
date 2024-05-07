@@ -2,6 +2,7 @@ import avt from './avt.jpg'
 import React, {useState} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 function Bar()
 {
@@ -59,12 +60,14 @@ function Bar()
         <div className="search-container">
           <input type="text" placeholder="Search" className="tim-kiem"/>
           <div className="search-icon">
-            <FontAwesomeIcon icon={faSearch} />
+            <FontAwesomeIcon icon={faSearch}/>
           </div>
         </div>
         <div className="extra-buttons">
-          <div className="nav2">Đăng nhập</div>
-          <div className="nav2">Đăng ký</div>
+          <Link style={{textDecoration : 'none'}} 
+          to="/login" className="nav2">Đăng nhập</Link>
+          <Link style={{textDecoration : 'none'}} 
+          to="/register" className="nav2">Đăng ký</Link>
         </div>
       </div>
     </>

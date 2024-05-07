@@ -14,7 +14,8 @@ function DanhMucSanPham()
     return(
         <>
             <h1 className="dmsp">Danh mục sản phẩm</h1>
-            <Card pic={pic1} title="Áo khoác"/>
+            <div className="card-zone">
+            <Card pic={pic1} title="Áo khoác" className="card1"/>
             <Card pic={pic2} title="Áo sơ mi"/>
             <Card pic={pic3} title="Áo thun"/>
             <Card pic={pic4} title="Áo Polo"/>
@@ -23,6 +24,7 @@ function DanhMucSanPham()
             <Card pic={pic7} title="Quần Âu"/>
             <Card pic={pic8} title="Giày Tây"/>
             <Card pic={pic9} title="Giày thể thao"/>
+            </div>
         </>
     );
 }

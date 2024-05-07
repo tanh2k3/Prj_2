@@ -3,7 +3,7 @@ import AnhBia from './AnhBia.jsx'
 import DanhMucSanPham from './DanhMucSanPham.jsx'
 import Footer from './Footer.jsx'
 
-function Customer()
+function Guest()
 {
     return(
         <>
@@ -15,4 +15,4 @@ function Customer()
     );
 }
 
-export default Customer
+export default Guest

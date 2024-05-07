@@ -1,3 +1,9 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -33,6 +39,7 @@
     font-weight: 600;
     position:relative;
     display: inline-block;
+    font-size: large;
   }
 
   .nav-button:hover{
@@ -42,7 +49,7 @@
   .Options1{
     position: absolute;
     top: 100%;
-    left: 8%;
+    left: 12%;
     background-color: white;
     border: 1px solid #ccc;
     padding: 5px;
@@ -52,7 +59,7 @@
   .Options2{
     position: absolute;
     top: 100%;
-    left: 19%;
+    left: 23%;
     background-color: white;
     border: 1px solid #ccc;
     padding: 5px;
@@ -62,7 +69,7 @@
   .Options3{
     position: absolute;
     top: 100%;
-    left: 31%;
+    left: 35%;
     background-color: white;
     border: 1px solid #ccc;
     padding: 5px;
@@ -135,6 +142,7 @@
 
   .dmsp {
     padding: 10px;
+    margin-left: 50px;
     color: #000000;
     font-family: Arial, Helvetica, sans-serif;
   }
@@ -150,6 +158,10 @@
     max-width: 200px;
     display: inline-block;
     background-color: rgb(255, 255, 255);
+  }
+
+  .card-zone{
+    margin-left: 40px;
   }
 
   .card:hover{
@@ -176,29 +188,47 @@
     color: rgb(255, 155, 155);
   }
 
+  .fter{
+    background-color: #ffffff;
+  }
+
+  .ke{
+    margin-top: 20px;
+  }
+
   .footer{
     display: flex;
   }
 
-  .footer-left, .footer-right{
+  .footer-left{
     flex: 1;
+    margin-top: 20px;
+  }
+
+  .footer-right{
+    flex: 1;
+    margin: 20px 20px 20px 20px;
+  }
+
+  .footer-right p{
+    margin-top: 5px;
   }
 
   .footer-text{
-    margin-left: 50px;
+    margin-left: 250px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
   }
 
   .footer-text1{
-    margin-left: 50px;
+    margin-left: 250px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     color: #245fff;
   }
 
   .footer-text2{
-    margin-left: 50px;
+    margin-left: 250px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(255, 106, 131);
@@ -216,4 +246,7 @@
   .footer-chu{
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin-left: 50px;
+    font-size: medium;
+    margin-right: 35px;
+    margin-top: 5px;
   }

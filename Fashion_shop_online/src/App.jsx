@@ -1,10 +1,10 @@
-import Customer from './Customer.jsx' 
+import Guest from './Guest.jsx' 
 
 function App() 
 {
     return(
       <>
-        <Customer/>
+        <Guest/>
       </>
     );
 }
