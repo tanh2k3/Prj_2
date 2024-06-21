@@ -1,30 +1,75 @@
+import { useState } from 'react';
 import './LoginPage.css';
 import { FaUser, FaLock } from "react-icons/fa";
-import {Link} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { useUser } from './UserContext';
 
-function LoginPage()
-{
-  return(
+function LoginPage() {
+  const { setUser } = useUser();
+  const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const login = async () => {
+    try {
+      const data = { username, password };
+      const response = await axios.post('http://localhost:3001/login', data);
+      if (response.data.status === "success") {
+        const userData = response.data.user;
+        const token = response.data.token;
+        localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('token', token);
+        setUser({ ...userData, token });
+        navigate('/');
+      } else {
+        alert("Login failed");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+      alert("An error occurred. Please try again.");
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    login();
+  };
+
+  return (
     <div className="lgp">
-    <div className="wrapper">
-      <form action="">
-        <h1>Đăng nhập</h1>
-        <div className="input-box">
-          <input type="text" placeholder="User name" required/>
-          <FaUser className="icon"/>
-        </div>
-        <div className="input-box">
-          <input type="password" placeholder="Password" required/>
-          <FaLock className="icon" />
-        </div>
-        <button type="submit">Login</button>
-        <div className="register-link">
-          <p>Chưa có tài khoản ? <Link to="/register" className="a">Đăng ký</Link></p>
-        </div>
-      </form>
-    </div>
+      <div className="wrapper">
+        <form onSubmit={handleSubmit}>
+          <h1>Đăng nhập</h1>
+          <div className="input-box">
+            <input
+              type="text"
+              placeholder="Email"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+            <FaUser className="icon" />
+          </div>
+          <div className="input-box">
+            <input
+              type="password"
+              placeholder="Mật khẩu"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <FaLock className="icon" />
+          </div>
+          <button type='submit'>Đăng nhập</button>
+          <div className="register-link">
+            <p>Chưa có tài khoản ? <Link to="/register" className="a">Đăng ký</Link></p>
+            <p><Link to="/forgot-password" className="aa">Quên mật khẩu?</Link></p>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
 
-export default LoginPage
+export default LoginPage;

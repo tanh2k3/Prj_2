@@ -1,0 +1,164 @@
+.SP-main{
+    display: flex;
+}
+
+.SP-main img{
+    width: 300px;
+    height: 430px;
+    margin-left: 100px;
+}
+
+.SP-in4{
+    margin-left: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.SP-in4 h1{
+    margin-top: 10px;
+    color: #A0522D;
+}
+
+.msp{
+    font-size: 15px;
+}
+.gia{
+    color: #A0522D;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.SP-in4 p{
+    margin: 15px;
+    font-size: 25px;
+}
+
+.SP-button-color{
+    padding: 5px;
+    margin-left: 20px;
+    font-size: 20px;
+    border: 1.5px solid;
+    border-radius: 3px;
+    background-color: rgb(255, 255, 255);
+    width: 100px;
+}
+
+.SP-button-color:hover{
+    cursor: pointer;
+    background-color: antiquewhite;
+    color: #A0522D;
+}
+.SP-button-colored{
+    padding: 5px;
+    margin-left: 20px;
+    font-size: 20px;
+    border: 1.5px solid;
+    border-radius: 3px;
+    background-color: #A0522D;
+    width: 100px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.SP-button{
+    padding: 10px;
+    margin-right: 20px;
+    font-size: 20px;
+    border: 1px solid;
+    border-radius: 3px;
+    background-color: rgb(255, 255, 255);
+}
+
+.SP-button:hover{
+    cursor: pointer;
+    background-color: antiquewhite;
+    color: #A0522D;
+}
+.SP-button-love{
+    border: none;
+    background-color: rgb(255, 255, 255);
+    font-size: 30px;
+    cursor: pointer;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.SP-button-love:hover{
+    color:#A0522D;
+}
+.SP-button-loved{
+    border: none;
+    background-color: rgb(255, 255, 255);
+    font-size: 30px;
+    cursor: pointer;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    color: #A0522D;
+}
+.SP-counter{
+    display: flex;
+}
+
+.SP-counter-button{
+    margin-top: 15px;
+    margin-bottom: 20px;
+    width: 30px;
+    background-color:rgb(255, 255, 255);
+    border: 1.5px solid;
+    border-radius: 2px;
+    font-size: 20px;
+}
+  
+.SP-counter-button:hover{
+    cursor: pointer;
+    background-color: antiquewhite;
+    color: #A0522D;
+}
+
+.SP-mota{
+    margin-left: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.SP-mota h2{
+    margin-top: 20px;
+}
+
+.SP-mota p{
+    margin-top: 10px;
+}
+
+.SP-danhgia{
+    margin-left: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.SP-danhgia h2{
+    margin-top: 20px;
+}
+
+.SP-danhgia p{
+    margin-top: 10px;
+}
+
+.SP-splq{
+    margin-left: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.SP-splq h2{
+    margin-top: 20px;
+}
+.img-bar{
+    padding: 20px 0px 30px 100px;
+    display: flex;
+}
+.img-item{
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+    margin-right: 20px;
+}
+.img-item:hover{
+    opacity: 0.8;
+}

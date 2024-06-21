@@ -1,4 +1,4 @@
-import anhbia from './anhbia.png'
+import anhbia from './assets/anhbia.jpg'
 
 function AnhBia()
 {
