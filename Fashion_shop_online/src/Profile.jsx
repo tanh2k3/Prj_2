@@ -116,19 +116,48 @@ const PersonalInfo = ({ user, setUser }) => {
 };
 
 const Orders = () => {
-    const orders = [
-        { id: 1, item: 'Sản phẩm 1', date: '2023-01-01' },
-        { id: 2, item: 'Sản phẩm 2', date: '2023-02-01' },
-    ];
+    const [orders, setOrders] = useState([]);
+    const {user} = useUser();
+    useEffect(() => {
+        const fetchOrders = async () => {
+            const response = await axios.get(`http://localhost:3001/orders/${user._id}`);
+            if (response.status === 200) setOrders(response.data);
+            else alert('Internal server error');
+        }
+        fetchOrders();
+    },[]);
 
     return (
         <div>
             <h1>Đơn hàng</h1>
-            <ul>
-                {orders.map(order => (
-                    <li key={order.id}>Mã đơn hàng: {order.id}, Mặt hàng: {order.item}, Ngày đặt: {order.date}</li>
-                ))}
-            </ul>
+            <div id="orders">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Số lượng sản phẩm</th>
+                                <th>Tổng giá trị</th>
+                                <th>Trạng thái</th>
+                                <th>Phương thức thanh toán</th>
+                                <th>Ngày đặt</th>
+                                <th>Ngày giao</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {orders.map((order, index) => (
+                                <tr key={index}>
+                                    <td className="stt">{index+1}</td>
+                                    <td className="stt">{order.order_quantity}</td>
+                                    <td>{order.order_price}</td>
+                                    <td>{order.order_status}</td>
+                                    <td>{order.order_pttt}</td>
+                                    <td>{order.order_date1}</td>
+                                    <td>{order.order_date2}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
         </div>
     );
 };
@@ -173,12 +202,12 @@ const FavoriteProducts = () => {
             <h1>Sản phẩm yêu thích</h1>
             <div className="favorites-list">
                 {favorites.map(favorite => (
-                    <div key={favorite._id} className="cardspp">
-                        <img className="cardspp-image" src={favorite.fp_id_sp.product_link}
+                    <div key={favorite._id} className="cardsppp">
+                        <img className="cardsppp-image" src={favorite.fp_id_sp.product_link}
                         onClick={() => navigate(`/productfilter/:category/${favorite.fp_id_sp._id}`)}/>
-                        <p className="cardspp-title">{favorite.fp_id_sp.product_name}</p>
-                        <p className="cardspp-price">{favorite.fp_id_sp.product_price}₫</p>
-                        <button className="cardspp-button" onClick={() => 
+                        <p className="cardsppp-title">{favorite.fp_id_sp.product_name}</p>
+                        <p className="cardsppp-price">{favorite.fp_id_sp.product_price}₫</p>
+                        <button className="cardsppp-button" onClick={() => 
                         handleRemoveFavorite(favorite.fp_id_sp)}>Xóa</button>
                 </div>
                 ))}

@@ -30,7 +30,7 @@
 }
 
 .SP-in4 p{
-    margin: 15px;
+    margin: 10px;
     font-size: 25px;
 }
 
@@ -81,7 +81,6 @@
     font-size: 30px;
     cursor: pointer;
     margin-left: 20px;
-    margin-bottom: 10px;
 }
 .SP-button-love:hover{
     color:#A0522D;
@@ -92,7 +91,6 @@
     font-size: 30px;
     cursor: pointer;
     margin-left: 20px;
-    margin-bottom: 10px;
     color: #A0522D;
 }
 .SP-counter{
@@ -101,7 +99,7 @@
 
 .SP-counter-button{
     margin-top: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     width: 30px;
     background-color:rgb(255, 255, 255);
     border: 1.5px solid;
@@ -161,4 +159,39 @@
 }
 .img-item:hover{
     opacity: 0.8;
+}
+.review{
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+}
+.review p{
+    margin-left: 20px;
+}
+.review-form{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+.review-form h3{
+    margin-bottom: 10px;
+}
+.review-form select{
+    margin-bottom: 10px;
+    width: 50%;
+    padding: 3px;
+}
+.review-form textarea{
+    margin-bottom: 10px;
+}
+.review-form button{
+    padding: 3px;
+    width: 50%;
+    cursor: pointer;
+    border: 1px solid;
+    border-radius: 3px;
+}
+.review-form button:hover{
+    background-color: rgb(164, 164, 164);
 }

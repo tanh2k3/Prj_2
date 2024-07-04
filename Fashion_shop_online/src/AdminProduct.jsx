@@ -202,11 +202,14 @@ function AdminProduct()
             <p style={{"fontSize":"20px"}}>Nhập thông tin sản phẩm mới:</p>
             <br/>
           <div className="add-pro">
-            <label>Tên: <input type="text" name="product_name" 
+            <label>Tên: <input style={{width: "90%"}} type="text" name="product_name" 
                 value={newProduct.product_name} onChange={handleInputChange}/></label>
             <label>Link ảnh: {newProduct.product_link.map((link, index) => (
-                <input key={index} type="text" name="product_link" value={link} 
-                onChange={(e) => handleLinkChange(e, index)}/>))}
+                <div className="linhpanh">
+                    <input key={index} type="text" name="product_link" value={link} 
+                    onChange={(e) => handleLinkChange(e, index)}/>
+                    {link && <img src={link} style={{ maxWidth: '100px', maxHeight: 'auto', marginBottom: "5px" }}/>}
+                </div>))}
                 <button onClick={handleAddLink}>Thêm link</button></label>
             <label>Giá: <input type="number" name="product_price" 
                 value={newProduct.product_price} onChange={handleInputChange}/></label>
@@ -249,7 +252,7 @@ function AdminProduct()
                         <input type="text" placeholder="Search" className="tim-kiem" onChange={handleSearchChange} />
                         <div className="search-icon"><FontAwesomeIcon icon={faSearch}/></div>
                     </div>
-                    <button onClick={handleAddProduct}><FaPlus /> Thêm sản phẩm mới</button>
+                    <button onClick={handleAddProduct}><FaPlus style={{"marginBottom":"-2px"}}/> Thêm sản phẩm mới</button>
                 </div>
                 <table>
                 <thead>
@@ -274,7 +277,7 @@ function AdminProduct()
                     <td>{p.product_category}</td>
                     <td>{p.product_price}</td>
                     <td className="ttct"><div onClick={() => handleViewDetails(p._id)}>Chi tiết</div></td>
-                    <td className="ttct"><div onClick={() => handleRemoveProduct(p._id)}>Xóa</div></td>
+                    <td className="ttct"><div className="xoasp" onClick={() => handleRemoveProduct(p._id)}>Xóa</div></td>
                     </tr>
                 ))}
                 </tbody>

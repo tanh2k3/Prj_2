@@ -9,6 +9,8 @@ import ProductFilter from './ProductFilter.jsx'
 import { useEffect, useState } from 'react'
 import GioHang from './GioHang.jsx';
 import Profile from './Profile.jsx';
+import Voucher from './Voucher.jsx';
+import Chat from './Chat.jsx';
 
 function Guest()
 {
@@ -20,6 +22,8 @@ function Guest()
                 <Route path='/' element={<>
                     <AnhBia/>
                     <DanhMucSanPham/>
+                    <Voucher/>
+                    <Chat/>
                 </>}/>
                 <Route path="/productfilter/:category/:id" element={<SP/>}/>
                 <Route path="/productfilter/:category?" element={<ProductFilter/>}/>

@@ -116,7 +116,6 @@ function Bar()
           to="/register" className="nav2"><LuLogIn />Đăng ký</Link></>)
                  :
           (<>
-          <Link to="/admin">Admin</Link>
           <Link style={{textDecoration : 'none'}}
           to="/giohang" className="navv2"><FaShoppingCart /></Link>
           <Link style={{textDecoration : 'none'}} 

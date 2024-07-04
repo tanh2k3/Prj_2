@@ -4,6 +4,7 @@ import {useUser} from "./UserContext";
 import './Admin.css';
 import { IoMdArrowDropright } from "react-icons/io";
 import { IoMdArrowDropleft } from "react-icons/io";
+import UserDetails from "./UserDetails";
 
 function AdminUser()
 {
@@ -28,7 +29,7 @@ function AdminUser()
     useEffect(() => {
         fetchAccounts();
     }, []);
-    const accos = accs.filter(a => a.email!==user.email);
+    const accos = accs.filter(a => a.email!=="trantuananh.bo2093@gmail.com");
     const indexOfLastCustomer = currentPage * customersPerPage;
     const indexOfFirstCustomer = indexOfLastCustomer - customersPerPage;
     const currentCustomers = accos.slice(indexOfFirstCustomer, indexOfLastCustomer);
@@ -41,7 +42,13 @@ function AdminUser()
     const handleNextPage = () => {
         setCurrentPage(prevPage => Math.min(prevPage + 1, Math.ceil(accos.length / customersPerPage)));
     };
+
+    const onClose =()=>{
+        setKh(null);
+    }
     return(
+        <>
+        {kh ? <UserDetails user={kh} onClose={onClose}/> : 
         <>
             <h1>Danh sách khách hàng</h1>
             <table>
@@ -67,26 +74,16 @@ function AdminUser()
                     </tr>
                 ))}
             </tbody>
-        </table>
-
-        <div className="pagination">
-            <button className="arrow" onClick={handlePrevPage} disabled={currentPage === 1}>
-            <IoMdArrowDropleft style={{"marginBottom":"-3px"}}/></button>
-            <span> {currentPage} </span>
-            <button className="arrow" onClick={handleNextPage} disabled={currentPage === Math.ceil(
-            accos.length/customersPerPage)}><IoMdArrowDropright style={{"marginBottom":"-3px"}}/></button>
-        </div>
-        
-        {kh && (
-                <div className="customer-details">
-                    <h2>Thông tin chi tiết khách hàng</h2>
-                    <br/>
-                    <p><strong>Mã khách hàng:</strong> {kh._id}</p>
-                    <p><strong>Họ và tên:</strong> {kh.name}</p>
-                    <p><strong>Email:</strong> {kh.email}</p>
-                    <p><strong>Số điện thoại:</strong> {kh.sdt}</p>
-                </div>
-            )}
+            </table>
+            <div className="pagination">
+                <button className="arrow" onClick={handlePrevPage} disabled={currentPage === 1}>
+                <IoMdArrowDropleft style={{"marginBottom":"-3px"}}/></button>
+                <span> {currentPage} </span>
+                <button className="arrow" onClick={handleNextPage} disabled={currentPage === Math.ceil(
+                accos.length/customersPerPage)}><IoMdArrowDropright style={{"marginBottom":"-3px"}}/></button>
+            </div>
+        </>
+        }
         </>
     )
 }

@@ -39,8 +39,13 @@ export const CartProvider = ({children}) =>
         item.selectedColor !== product.selectedColor || 
         item.selectedSize !== product.selectedSize));
     };
+
+    const clearCart = () => {
+        setCart([]);
+    };
+
     return (
-        <CartContext.Provider value={{cart, addToCart, removeFromCart}}>
+        <CartContext.Provider value={{cart, addToCart, removeFromCart, clearCart}}>
             {children}
         </CartContext.Provider>
     );

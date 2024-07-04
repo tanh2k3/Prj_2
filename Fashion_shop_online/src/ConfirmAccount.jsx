@@ -29,7 +29,7 @@ function ConfirmAccount(props)
                 emailref.current.style.display = 'none';
                 coderef.current.style.display = 'flex';                
             } else {
-                alert(`${response.data.message}`);
+                alert(`${response.data.message}`); 
             }
         });
     };
@@ -50,7 +50,7 @@ function ConfirmAccount(props)
         console.log('Verifying account');
         const email = document.getElementById('verify_email').value;
         const number = document.getElementById('verify_code').value;
-        const data = {
+        const data = { 
             email,
             number
         };

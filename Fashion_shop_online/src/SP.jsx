@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useLocation, useNavigate, Link } from 'react-router-dom';
 import './SP.css'
 import Counter from './Counter';
 import { useProduct } from './ProductContext.jsx'
@@ -7,6 +7,8 @@ import { FaHeart } from "react-icons/fa6";
 import {CartProvider, useCart} from './CartContext.jsx';
 import axios from 'axios';
 import {useUser} from './UserContext.jsx';
+import CardSP from './CardSP.jsx';
+import { MdAccountCircle } from "react-icons/md";
 
 function SP() 
 {
@@ -26,18 +28,43 @@ function SP()
     const [availableSizes, setAvailableSizes] = useState([]);
     const [maxQuantity, setMaxQuantity] = useState(1);
     const [isFavorite, setIsFavorite] = useState(false);
-    const userId = user._id;
+    const userId = user?._id;
+
+    const [reviews, setReviews] = useState([]);
+    const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState('');
+    const [hasPurchased, setHasPurchased] = useState(false); // To check if the user has purchased the product
     
     useEffect(() => {
-        const foundProduct = products.find(p => p._id === id);
-        if (foundProduct) {
-            setProd(foundProduct);
-            setLink(foundProduct.product_link[0]);
-            setSelectedColor(foundProduct.product_color[0]);
-            setSelectedSize(foundProduct.product_size[0]);
-            setAvailableSizes(getAvailableSizes(foundProduct.product_type, foundProduct.product_color[0]));
-            checkFavoriteStatus(foundProduct._id);
-        }
+        const fetchProductData = async () => {
+            const foundProduct = products.find(p => p._id === id);
+            if (foundProduct) {
+                setProd(foundProduct);
+                setLink(foundProduct.product_link[0]);
+                setSelectedColor(foundProduct.product_color[0]);
+                setSelectedSize(foundProduct.product_size[0]);
+                setAvailableSizes(getAvailableSizes(foundProduct.product_type, foundProduct.product_color[0]));
+                checkFavoriteStatus(foundProduct._id);
+                setReviews(foundProduct.reviews || []);
+    
+                // Check if user has purchased the product
+                try {
+                    const orderResponse = await axios.get('http://localhost:3001/ordersid', { params: { userId } });
+                    console.log('Order Response:', orderResponse.data);
+                    if (orderResponse.data.status === 'success') {
+                        const hasPurchased = orderResponse.data.orders.some(order => 
+                            order.order_product.some(p => p.id_product === id)
+                        );
+                        setHasPurchased(hasPurchased);
+                    } else {
+                        console.error('Failed to fetch orders:', orderResponse.data.message);
+                    }
+                } catch (error) {
+                    console.error('Error fetching orders:', error);
+                }
+            }
+        };
+        fetchProductData();
     }, [id, products]);
 
     const checkFavoriteStatus = (productId) => {
@@ -120,22 +147,27 @@ function SP()
 
     const handleAddToCart = () => {
         const productToAdd = {
-            ...prod,
+            /*...prod,
             selectedColor,
             selectedSize,
-            quantity
+            quantity*/ 
+            _id: prod._id,
+            product_link: prod.product_link,
+            product_name: prod.product_name,
+            selectedColor: selectedColor,
+            selectedSize: selectedSize,
+            quantity: quantity,
+            product_price: prod.product_price 
         };
-        if(selectedColor!==null && selectedSize !==null && quantity >=1)
-        {if (isEditing) {
-            removeFromCart(originalProduct); 
-            addToCart(productToAdd); 
-        } else {
-            addToCart(productToAdd);
-        }}
-        else
-        { 
-            if(selectedColor===null || selectedSize ===null || quantity <1)
-            {alert("Hãy chọn size/số lượng sản phẩm.");}}
+        console.log(selectedColor);
+        if(selectedColor!==null && selectedSize !==null && quantity >=1) {
+            if (isEditing) {
+                removeFromCart(originalProduct); 
+                addToCart(productToAdd); 
+            } else { addToCart(productToAdd); }
+        }
+        else {  if(selectedColor===null || selectedSize ===null || quantity <1)
+                {alert("Hãy chọn size/số lượng sản phẩm.");}}
     };
 
     const formatDescription = (description) => {
@@ -143,6 +175,32 @@ function SP()
             <p key={index}>{str}</p>
         ));
     };
+
+    const handleSubmitReview = async () => {
+        if (rating === 0 || comment.trim() === '') {
+            alert('Please provide a rating and a comment.');
+            return;
+        }
+    
+        try {
+            const response = await axios.post(`http://localhost:3001/products/${id}/review`, {
+                userId,
+                rating,
+                comment
+            });
+            if (response.data.status === 'success') {
+                setReviews([...reviews, { userId, rating, comment, date: new Date() }]);
+                setRating(0);
+                setComment('');
+            } else {
+                alert('Failed to submit review. Please try again later.');
+            }
+        } catch (error) {
+            console.error('Error submitting review:', error);
+            alert('An error occurred while submitting your review.');
+        }
+    };
+    
     return (
         <div>
             <div className="SP-main">
@@ -168,9 +226,13 @@ function SP()
                     <div className='SP-counter'>
                         <p>Số lượng: </p>
                         <Counter quantity={quantity} setQuantity={setQuantity} maxQuantity={maxQuantity}/>
+                        <p style={{fontSize:"18px"}}>(Còn {prod.product_quantity} sản phẩm)</p>
                     </div>
-                    <button className={isFavorite ? 'SP-button-loved' : 'SP-button-love'} onClick={toggleFavorite}><FaHeart /></button>
-                    <br/>
+                    <p>Rating: {prod.product_rating} / 5 ({reviews.length} đánh giá)</p>
+                    <p>Đã bán: {prod.product_sold_quantity}</p>
+                    <button className={isFavorite ? 'SP-button-loved' : 'SP-button-love'} onClick={toggleFavorite}>
+                        <FaHeart/>
+                    </button><br/>
                     <button className='SP-button' type="button" onClick={handleAddToCart}>
                         {isEditing ? 'Cập nhật giỏ hàng' : 'Thêm vào giỏ hàng'}
                     </button>
@@ -187,10 +249,40 @@ function SP()
                 {formatDescription(prod.product_description)}
             </div>
             <div className="SP-danhgia">
-                <h2>Đánh giá của khách hàng</h2>
+                <h2>Đánh giá của khách hàng</h2><br/>
+                {reviews.map((review, index) => (
+                    <div key={index} className="review">
+                        <div>
+                            <MdAccountCircle style={{marginBottom:"-2px"}}/> 
+                            <span> {review.userId}</span>
+                        </div>
+                        <p>Rating: {review.rating}/5</p>
+                        <p>{review.comment}</p>
+                    </div>
+                ))}
+                {hasPurchased && (
+                <div className="review-form">
+                    <h3>Viết đánh giá của bạn</h3>
+                    <select value={rating} onChange={(e) => setRating(Number(e.target.value))}>
+                        <option value="0">Chọn số sao</option>
+                        <option value="1">1 Sao</option>
+                        <option value="2">2 Sao</option>
+                        <option value="3">3 Sao</option>
+                        <option value="4">4 Sao</option>
+                        <option value="5">5 Sao</option>
+                    </select>
+                    <textarea value={comment} onChange={(e) => setComment(e.target.value)} placeholder="Viết đánh giá của bạn ở đây..." />
+                    <button onClick={handleSubmitReview}>Gửi đánh giá</button>
+                </div>
+                )}
             </div>
             <div className="SP-splq">
-                <h2>Các sản phẩm bạn có thể quan tâm</h2>
+                <h2>Các sản phẩm tương tự</h2><br/>
+                {products.filter(pr => pr.product_category===prod.product_category && pr._id !== prod._id).map((proo, index) => (
+                    <Link to={`/productfilter/:category/${proo._id}`} key={index}>
+                        <CardSP title={proo.product_name} pic={proo.product_link} price={proo.product_price}/>
+                    </Link>
+                ))}
             </div>
         </div>
     );

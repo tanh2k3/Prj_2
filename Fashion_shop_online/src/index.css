@@ -324,7 +324,7 @@ font-size: 20px;
   margin-top: 10px;
   margin-left: 5px;
   color:rgb(0, 0, 0);
-  min-height: 40px;
+  min-height: 60px;
 }
 
 .cardsp-price{
@@ -588,4 +588,69 @@ margin-top: 10px;
 .verify_border #arrow_back:hover {
     background-color: #A0522D;
     color: rgb(255, 255, 255);
+}
+.cardvoutextt{
+  flex: 1;
+  background-color: #ffc235;
+  padding: 5px;
+}
+.cardvouzone{
+  margin-left: 45px;
+}
+.voucher{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.voucher h1{
+  margin-top: 20px;
+  margin-left: 60px;
+}
+.paymentpage{
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+.paymentpage h1{
+  text-align: center;
+  color: #A0522D;
+  margin-top: 100px;
+}
+.pmqrcode{
+  text-align: center;
+  margin-top: 30px;
+}
+.paymentpage button{
+  width: 200px;
+  font-size: 20px;
+  padding: 3px;
+  border: 1.5px solid;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+.paymentpage button:hover{
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #A0522D;
+}
+.chat-bubble {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+.chat-bubble:hover {
+  background-color: #A0522D;
+}
+.chat-icon {
+  width: 40px;
+  height: 40px;
 }

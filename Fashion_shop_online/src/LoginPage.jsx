@@ -6,7 +6,7 @@ import axios from "axios";
 import { useUser } from './UserContext';
 
 function LoginPage() {
-  const { setUser } = useUser();
+  const { user, setUser } = useUser();
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -21,7 +21,8 @@ function LoginPage() {
         localStorage.setItem('user', JSON.stringify(userData));
         localStorage.setItem('token', token);
         setUser({ ...userData, token });
-        navigate('/');
+        if(user.email==="trantuananh.bo2093@gmail.com") navigate('/admin');
+        else navigate('/');
       } else {
         alert("Login failed");
       }
