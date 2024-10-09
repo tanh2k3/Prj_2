@@ -550,7 +550,7 @@ app.post('/products/:id/review', async (req, res) => {
 
 
 app.get('/products/:id', async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params; 
 
   try {
     const product = await Product.findById(id).populate('reviews.userId', 'username');
